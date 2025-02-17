@@ -3,13 +3,14 @@ import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 import {UserContext} from "../../src/Context/ContextProvider"
 
 
+
 const CategoryWisePieChart = () => {
     const [data, setData] = useState([]);
     const backendUrl=useContext(UserContext)
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(`${backendUrl}/api/dashboard/pieChartData`);
+            const response = await fetch(`${backendUrl.backendUrl}/api/dashboard/pieChartData`);
             const result = await response.json();
             setData(result);
           } catch (error) {

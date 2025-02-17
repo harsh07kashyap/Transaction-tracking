@@ -34,10 +34,12 @@ export default function TransactionForm() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
+
   // Fetch all transactions
   const fetchTransactions = async () => {
     try {
-      const response = await fetch(`${backendUrl}/api/transactionForm/getTransactions`);
+      console.log(backendUrl.backendUrl)
+      const response = await fetch(`${backendUrl.backendUrl}/api/transactionForm/getAllTransactions`);
       const data = await response.json();
       setTransactions(data);
     } catch (err) {
@@ -56,9 +58,10 @@ export default function TransactionForm() {
     setSuccess(false);
 
     try {
+      
       const url = editId
-        ? `${backendUrl}/api/transactionForm/editTransaction/${editId}`
-        : `${backendUrl}/api/transactionForm/addTransaction`;
+        ? `${backendUrl.backendUrl}/api/transactionForm/editTransaction/${editId}`
+        : `${backendUrl.backendUrl}/api/transactionForm/addTransaction`;
       const method = editId ? "PUT" : "POST";
 
       const response = await fetch(url, {
@@ -86,7 +89,7 @@ export default function TransactionForm() {
     if (!window.confirm("Are you sure you want to delete this transaction?")) return;
 
     try {
-      await fetch(`${backendUrl}/api/transactionForm/deleteTransaction/${id}`, {
+      await fetch(`${backendUrl.backendUrl}/api/transactionForm/deleteTransaction/${id}`, {
         method: "DELETE",
       });
       fetchTransactions(); // Refresh list

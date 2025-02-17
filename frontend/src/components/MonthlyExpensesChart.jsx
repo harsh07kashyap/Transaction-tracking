@@ -8,11 +8,12 @@ const MonthlyExpensesChart = () => {
   const [data, setData] = useState([]);
   const backendUrl=useContext(UserContext)
   
+  
   // Fetching the data from the backend
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${backendUrl}/api/dashboard/monthlyExpenses`);
+        const response = await fetch(`${backendUrl.backendUrl}/api/dashboard/monthlyExpenses`);
         const result = await response.json();
         setData(result);
       } catch (error) {
