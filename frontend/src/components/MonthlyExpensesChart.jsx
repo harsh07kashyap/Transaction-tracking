@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext} from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {UserContext} from "../../src/Context/ContextProvider"
+
+
 
 const MonthlyExpensesChart = () => {
   const [data, setData] = useState([]);
-
+  const backendUrl=useContext(UserContext)
+  
   // Fetching the data from the backend
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/dashboard/monthlyExpenses");
+        const response = await fetch(`${backendUrl}/api/dashboard/monthlyExpenses`);
         const result = await response.json();
         setData(result);
       } catch (error) {

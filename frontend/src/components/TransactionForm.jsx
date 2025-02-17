@@ -1,7 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
+import {UserContext} from "../../src/Context/ContextProvider"
+
+
 
 const transactionSchema = z.object({
   amount: z.preprocess(
@@ -14,6 +17,7 @@ const transactionSchema = z.object({
 });
 
 export default function TransactionForm() {
+  const backendUrl=useContext(UserContext)
   const { 
     register, 
     handleSubmit, 
@@ -33,7 +37,7 @@ export default function TransactionForm() {
   // Fetch all transactions
   const fetchTransactions = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/transactionForm/getAllTransactions");
+      const response = await fetch(`${backendUrl}/api/transactionForm/getTransactions`);
       const data = await response.json();
       setTransactions(data);
     } catch (err) {
@@ -53,8 +57,8 @@ export default function TransactionForm() {
 
     try {
       const url = editId
-        ? `http://localhost:4000/api/transactionForm/editTransaction/${editId}`
-        : "http://localhost:4000/api/transactionForm/addTransaction";
+        ? `${backendUrl}/api/transactionForm/editTransaction/${editId}`
+        : `${backendUrl}/api/transactionForm/addTransaction`;
       const method = editId ? "PUT" : "POST";
 
       const response = await fetch(url, {
@@ -82,7 +86,7 @@ export default function TransactionForm() {
     if (!window.confirm("Are you sure you want to delete this transaction?")) return;
 
     try {
-      await fetch(`http://localhost:4000/api/transactionForm/deleteTransaction/${id}`, {
+      await fetch(`${backendUrl}/api/transactionForm/deleteTransaction/${id}`, {
         method: "DELETE",
       });
       fetchTransactions(); // Refresh list

@@ -1,5 +1,7 @@
 import Transaction from "../models/Transactions.js";
 
+
+
 const getMonthlyExpenses = async (req, res) => {
     try {
         // Aggregate transactions by month, summing the expenses
@@ -28,4 +30,29 @@ const getMonthlyExpenses = async (req, res) => {
       }
 }
 
-export { getMonthlyExpenses };
+
+const getPieChartData = async (req, res) => {
+  try{
+    const result = await Transaction.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          count: { $sum: 1 },
+        },
+      },
+      { $sort: { count: -1 } },
+    ]);
+
+    const formattedResult = result.map((item) => ({
+      category: item._id,
+      count: item.count,
+    }));
+    res.status(200).json(formattedResult);
+  }
+  catch(error){
+    console.error("Error fetching pie chart data:",error)
+    res.status(500).json({message:"Server error",error})
+  }
+}
+
+export { getMonthlyExpenses,getPieChartData };
