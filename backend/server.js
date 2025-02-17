@@ -11,10 +11,11 @@ connectDB()
 
 
 
+
 //middlewares
 app.use(cors());
 app.use(cors({
-    origin: ['http://localhost:5173','transaction-tracking-frontend.vercel.app'], // Allow only this origin to access the server
+    origin: ['http://localhost:5173','https://transaction-tracking-frontend.vercel.app/'], // Allow only this origin to access the server
     methods: 'GET,POST,PUT,PATCH,DELETE,OPTIONS', // Allowed HTTP methods
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, auth-token', // Allowed headers
     credentials: true // If you need to send cookies or HTTP authentication
