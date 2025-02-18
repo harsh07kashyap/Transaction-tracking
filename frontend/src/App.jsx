@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
 import Transactions from './pages/Transactions';
 import Budgets from './pages/Budgets';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() { 
   return (

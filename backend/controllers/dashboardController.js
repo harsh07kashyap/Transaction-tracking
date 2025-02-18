@@ -55,4 +55,39 @@ const getPieChartData = async (req, res) => {
   }
 }
 
-export { getMonthlyExpenses,getPieChartData };
+const categoryPerMonthExpenditure=async(req,res)=>{
+  try {
+    const result = await Transaction.aggregate([
+      {
+        $group: {
+          _id: {
+            month: { $month: "$date" },
+            year: { $year: "$date" },
+            category: "$category",
+          },
+          totalAmount: { $sum: "$amount" },
+        },
+      },
+      {
+        $sort: { "_id.year": 1, "_id.month": 1 }, // Sort by year and month
+      },
+    ]);
+
+    if (!Array.isArray(result)) {
+      return res.status(500).json({ message: "Unexpected response format", data: result });
+    }
+
+    const formattedData = result.map((item) => ({
+      month: `${item._id.year}-${String(item._id.month).padStart(2, "0")}`, // YYYY-MM format
+      category: item._id.category,
+      totalAmount: item.totalAmount,
+    }));
+
+    res.json(formattedData);
+  } catch (error) {
+    console.error("Error fetching category expenses:", error);
+    res.status(500).json({ message: "Server Error", error });
+  }
+}
+
+export { getMonthlyExpenses,getPieChartData,categoryPerMonthExpenditure };

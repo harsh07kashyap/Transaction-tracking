@@ -29,8 +29,8 @@ const getAllTransactions = async (req, res) => {
 
 const editTransaction = async (req, res) => {
     try {
-        const { id } = req.params;
-        const updatedTransaction = await Transaction.findByIdAndUpdate(id, req.body, { new: true });
+        const { editId } = req.params;
+        const updatedTransaction = await Transaction.findByIdAndUpdate(editId, req.body, { new: true });
     
         if (!updatedTransaction) {
           return res.status(404).json({ message: "Transaction not found" });

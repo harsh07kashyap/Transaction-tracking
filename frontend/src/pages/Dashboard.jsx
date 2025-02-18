@@ -1,7 +1,7 @@
 import React from 'react'
 import MonthlyExpensesChart from '../components/MonthlyExpensesChart';
 import CategoryWisePieChart from '../components/CategoryWisePieChart';
-
+import CategoryLineChart from '../components/CategoryLineChart';
 
 
 const Dashboard = () => {
@@ -10,6 +10,7 @@ const Dashboard = () => {
       <h1>Dashboard</h1>
       <MonthlyExpensesChart />
       <CategoryWisePieChart/>
+      <CategoryLineChart/>
     </div>
   )
 }

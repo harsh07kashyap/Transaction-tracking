@@ -9,9 +9,9 @@ import UserContextProvider from './Context/ContextProvider';
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <UserContextProvider>
     <App />
   </UserContextProvider>
-  </StrictMode>
+  // </StrictMode>
 )

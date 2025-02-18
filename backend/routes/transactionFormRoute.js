@@ -3,6 +3,7 @@ import { addTransaction, getAllTransactions, editTransaction, deleteTransaction 
 
 const transactionRouter=express.Router()
 
+
 //admin can add doctors/nurses
 transactionRouter.post('/addTransaction',addTransaction)
 

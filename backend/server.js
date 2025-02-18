@@ -4,6 +4,7 @@ import 'dotenv/config'
 import connectDB from "./config/mongodb.js"
 import transactionRouter from "./routes/transactionFormRoute.js"
 import dashboardRouter from "./routes/dashboardRoute.js"
+import budgetRouter from "./routes/budgetRoute.js"
 
 const app=express()
 const port=process.env.PORT || 4000
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/transactionForm',transactionRouter)
 app.use('/api/dashboard',dashboardRouter)
+app.use('/api/budget',budgetRouter)
 
 app.get('/',(req,res)=>{
     res.send("Api working")

@@ -40,18 +40,17 @@ const MonthlyExpensesChart = () => {
   ];
 
   return (
-    <ResponsiveContainer width="50%" height={400}>
-      <BarChart margin={{ top: 20, right: 20, left: 20, bottom: 20}}  data={data} >
-      <XAxis 
-          dataKey="month" 
-           // Forces all labels to be shown
-        />
-        <YAxis />
-        <Tooltip />
-      
-        <Bar dataKey="expenses" fill="#8884d8" barSize={15} />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="d-flex flex-column justify-content-center align-items-center my-4">
+  <ResponsiveContainer width="50%" height={400}>
+    <BarChart margin={{ top: 20, right: 20, left: 20, bottom: 20 }} data={data}>
+      <XAxis dataKey="month" />
+      <YAxis />
+      <Tooltip />
+      <Bar dataKey="expenses" fill="#8884d8" barSize={15} />
+    </BarChart>
+  </ResponsiveContainer>
+  <p className="text-center mt-3 fw-bold">Monthly Expenses</p>
+</div>
   );
 };
 

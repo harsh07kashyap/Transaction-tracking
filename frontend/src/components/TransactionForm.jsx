@@ -108,56 +108,65 @@ export default function TransactionForm() {
   };
 
   return (
-    <div className="p-4 border rounded">
-      {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-        <input type="number" placeholder="Amount" {...register("amount")} className="border p-2 w-full" />
-        {errors.amount && <p className="text-red-500">{errors.amount.message}</p>}
-
-        <input type="date" {...register("date")} className="border p-2 w-full" />
-        {errors.date && <p className="text-red-500">{errors.date.message}</p>}
-
-        <input type="text" placeholder="Description (optional)" {...register("description")} className="border p-2 w-full" />
-        {errors.description && <p className="text-red-500">{errors.description.message}</p>}
-
-        <select {...register("category")} className="border p-2 w-full">
-          <option value="Food">Food</option>
-          <option value="Rent">Rent</option>
-          <option value="Salary">Salary</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Shopping">Shopping</option>
-          <option value="Other">Other</option>
-        </select>
-        {errors.category && <p className="text-red-500">{errors.category.message}</p>}
-
-        <button type="submit" className="bg-blue-500 text-black p-2 rounded w-full" disabled={loading}>
-          {loading ? "Saving..." : editId ? "Update Transaction" : "Add Transaction"}
-        </button>
-
-        {error && <p className="text-red-500 mt-2">{error}</p>}
-        {success && <p className="text-green-500 mt-2">Transaction saved successfully!</p>}
-      </form>
-
-      {/* Transactions List */}
-      <h2 className="text-xl font-semibold mt-6">Transactions</h2>
-      {transactions.length === 0 ? (
-        <p>No transactions added yet.</p>
-      ) : (
-        <ul className="mt-2 space-y-2">
-          {transactions.map((transaction) => (
-            <li key={transaction._id} className="p-2 border rounded flex justify-between items-center">
-              <div>
-                <p className="font-semibold">${transaction.amount} - {transaction.category}</p>
-                <p className="text-sm">{transaction.description || "No description"} | {transaction.date}</p>
-              </div>
-              <div className="space-x-2">
-                <button onClick={() => handleEdit(transaction)} className="bg-yellow-500 text-black p-1 rounded">Edit</button>
-                <button onClick={() => handleDelete(transaction._id)} className="bg-red-500 text-black p-1 rounded">Delete</button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="p-4 border rounded shadow-sm bg-light">
+  {/* Form */}
+  <form onSubmit={handleSubmit(onSubmit)} className="mb-3">
+    <div className="mb-3">
+      <input type="number" placeholder="Amount" {...register("amount")} className="form-control" />
+      {errors.amount && <p className="text-danger">{errors.amount.message}</p>}
     </div>
+
+    <div className="mb-3">
+      <input type="date" {...register("date")} className="form-control" />
+      {errors.date && <p className="text-danger">{errors.date.message}</p>}
+    </div>
+
+    <div className="mb-3">
+      <input type="text" placeholder="Description (optional)" {...register("description")} className="form-control" />
+      {errors.description && <p className="text-danger">{errors.description.message}</p>}
+    </div>
+
+    <div className="mb-3">
+      <select {...register("category")} className="form-select">
+        <option value="Food">Food</option>
+        <option value="Rent">Rent</option>
+        <option value="Salary">Salary</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Other">Other</option>
+      </select>
+      {errors.category && <p className="text-danger">{errors.category.message}</p>}
+    </div>
+
+    <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+      {loading ? "Saving..." : editId ? "Update Transaction" : "Add Transaction"}
+    </button>
+
+    {error && <p className="text-danger mt-2">{error}</p>}
+    {success && <p className="text-success mt-2">Transaction saved successfully!</p>}
+  </form>
+
+  {/* Transactions List */}
+  <h2 className="h5 mt-4">Recent Transactions</h2>
+  {transactions.length === 0 ? (
+    <p className="text-muted">No transactions added yet.</p>
+  ) : (
+    <ul className="list-group mt-2">
+      {transactions.map((transaction) => (
+        <li key={transaction._id} className="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <p className="fw-semibold mb-1">₹ {transaction.amount} - {transaction.category}</p>
+            <p className="small text-muted">{transaction.description || "No description"} | {transaction.date}</p>
+          </div>
+          <div className="d-flex gap-2">
+            <button onClick={() => handleEdit(transaction)} className="btn btn-warning btn-sm">Edit</button>
+            <button onClick={() => handleDelete(transaction._id)} className="btn btn-danger btn-sm">Delete</button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
   );
 }

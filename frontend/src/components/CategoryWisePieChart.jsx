@@ -21,11 +21,23 @@ const CategoryWisePieChart = () => {
         fetchData();
       }, []);
   return (
-    <ResponsiveContainer width="50%" height={400}> 
-        <PieChart width={730} height={250}>
-            <Pie data={data} dataKey="count" nameKey="category" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
-        </PieChart>
-    </ResponsiveContainer>
+    <div className="d-flex flex-column justify-content-center align-items-center my-4">
+  <ResponsiveContainer width="50%" height={400}>
+    <PieChart width={730} height={250}>
+      <Pie 
+        data={data} 
+        dataKey="count" 
+        nameKey="category" 
+        cx="50%" 
+        cy="50%" 
+        outerRadius={50} 
+        fill="#8884d8" 
+      />
+    </PieChart>
+  </ResponsiveContainer>
+  <p className="text-center mt-3 fw-bold">Category Expenses</p>
+</div>
+
   )
 }
 
