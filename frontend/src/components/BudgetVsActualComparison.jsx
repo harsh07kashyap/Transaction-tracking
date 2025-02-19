@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+
+import { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import {UserContext} from "../../src/Context/ContextProvider"
+
 
 export default function BudgetVsActualChart() {
   const [data, setData] = useState([]);
+  const  backendUrl  = useContext(UserContext);
   const [selectedMonth, setSelectedMonth] = useState(() => {
     const now = new Date();
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
@@ -11,7 +15,7 @@ export default function BudgetVsActualChart() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/budget/budgetVsActualComparison/${selectedMonth}`)
+      .get(`${backendUrl.backendUrl}/api/budget/budgetVsActualComparison/${selectedMonth}`)
       .then((res) => {
         setData(res.data);
       })

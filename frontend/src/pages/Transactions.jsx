@@ -1,29 +1,19 @@
 import React, { useState } from 'react';
 import TransactionForm from '../components/TransactionForm';
-// import TransactionList from './TransactionList';
-// import MonthlyExpensesChart from './MonthlyExpensesChart';
+
+
 
 const Transactions = () => {
-  // const [transactions, setTransactions] = useState([]);
-
-  // const addTransaction = (transaction) => {
-  //   setTransactions([...transactions, transaction]);
-  // };
-
-  // const editTransaction = (updatedTransaction) => {
-  //   setTransactions(transactions.map(t => t.id === updatedTransaction.id ? updatedTransaction : t));
-  // };
-
-  // const deleteTransaction = (id) => {
-  //   setTransactions(transactions.filter(t => t.id !== id));
-  // };
 
   return (
     <div>
-      <h1>Transaction Tracker</h1>
+      <h1 className="text-center px-sm-5 px-3 py-4 bg-light 
+              border-start border-5 border-danger 
+              fw-bold fs-2 mb-5">
+        Transactions
+      </h1>
       <TransactionForm />
-      {/* <TransactionList /> */}
-      {/* <MonthlyExpensesChart transactions={transactions} /> */}
+
     </div>
   );
 };

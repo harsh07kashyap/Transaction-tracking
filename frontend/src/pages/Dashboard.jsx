@@ -4,10 +4,11 @@ import CategoryWisePieChart from '../components/CategoryWisePieChart';
 import CategoryLineChart from '../components/CategoryLineChart';
 
 
+
 const Dashboard = () => {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>DASHBOARD</h1>
       <MonthlyExpensesChart />
       <CategoryWisePieChart/>
       <CategoryLineChart/>

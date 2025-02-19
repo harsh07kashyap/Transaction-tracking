@@ -3,6 +3,7 @@ import axios from "axios";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from "recharts";
 import { UserContext } from "../Context/ContextProvider";
 
+
 const CategoryLineChart = () => {
   const [chartData, setChartData] = useState([]);
     const backendUrl=useContext(UserContext)
@@ -45,7 +46,12 @@ const CategoryLineChart = () => {
       <Line type="monotone" dataKey="Other" stroke="#000000" />
     </LineChart>
   </ResponsiveContainer>
-  <p className="text-center mt-3 fw-bold">Monthly Category Trends</p>
+  <p className="text-center mt-4 mb-4 fs-2 fw-bold text-dark-emphasis 
+            tracking-tight animate-fade-in">
+  <span className="border-bottom border-3 border-primary pb-1">
+    Monthly Category Expenses
+  </span>
+</p>
 </div>
 
   );

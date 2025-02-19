@@ -4,12 +4,13 @@ import {UserContext} from "../../src/Context/ContextProvider"
 
 
 
+
+
 const MonthlyExpensesChart = () => {
   const [data, setData] = useState([]);
   const backendUrl=useContext(UserContext)
   
   
-  // Fetching the data from the backend
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,20 +25,6 @@ const MonthlyExpensesChart = () => {
     fetchData();
   }, []);
 
-  const colors = [
-    "#FF6347", // January
-    "#4682B4", // February
-    "#32CD32", // March
-    "#FFD700", // April
-    "#8A2BE2", // May
-    "#FF1493", // June
-    "#1E90FF", // July
-    "#FF4500", // August
-    "#2E8B57", // September
-    "#D2691E", // October
-    "#A52A2A", // November
-    "#00FFFF", // December
-  ];
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center my-4">
@@ -49,7 +36,12 @@ const MonthlyExpensesChart = () => {
       <Bar dataKey="expenses" fill="#8884d8" barSize={15} />
     </BarChart>
   </ResponsiveContainer>
-  <p className="text-center mt-3 fw-bold">Monthly Expenses</p>
+  <p className="text-center mt-4 mb-4 fs-2 fw-bold text-dark-emphasis 
+            tracking-tight animate-fade-in">
+  <span className="border-bottom border-3 border-primary pb-1">
+    Monthly Expenses
+  </span>
+</p>
 </div>
   );
 };
